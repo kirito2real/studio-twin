@@ -5,7 +5,7 @@ import {RoomEnvironment} from './vendor/environments/RoomEnvironment.js';
 
 const $=id=>document.getElementById(id);
 const viewport=$('viewport');
-let renderer,model,meta,selected,outline,mode='orbit',comparison=false;
+let renderer,model,meta,selected,outline,mode='orbit';
 const meshes=[],assets=new Map(),keys=new Set();
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(42,1,.03,120);
@@ -42,11 +42,9 @@ try{
  renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;const rect=viewport.getBoundingClientRect(),ray=new THREE.Raycaster();ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);const hit=ray.intersectObjects(meshes,false).find(h=>h.object.visible&&(h.object.userData.layer!=='room'||clipping.distanceToPoint(h.point)>=0));if(hit)select(assetOf(hit.object));});
  $('asset-select').onchange=e=>{const object=assets.get(e.target.value);if(object)select(object);};$('focus').onclick=focus;
  document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{if(b.dataset.mode==='orbit')overview();else if(b.dataset.mode==='walk')view('Interior');else{activeMode('top');cut(1.3);setCamera([.3,12,.001],[.3,0,0],42);}});
- document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{view(b.dataset.view);$('reference').src=`assets/corner-${b.dataset.photo}.jpg`;});
+ document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>view(b.dataset.view));
  document.querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>view(b.dataset.detail));
  $('reset').onclick=overview;
- $('compare').onclick=()=>{comparison=!comparison;$('photo-pane').hidden=!comparison;$('comparison-tools').hidden=!comparison;$('compare').setAttribute('aria-pressed',String(comparison));if(comparison){view('Interior');$('reference').src='assets/corner-3.jpg';}resize();};
- $('split').oninput=e=>$('photo-pane').style.width=e.target.value+'%';
  ['room','assets','ceiling'].forEach(id=>$(id).onchange=()=>{if(id==='ceiling'&&$('ceiling').checked)cut(3.5);layers();});$('colors').onchange=e=>colors(e.target.checked);
  $('cut').oninput=e=>cut(Number(e.target.value));$('exposure').oninput=e=>{renderer.toneMappingExposure=Number(e.target.value);$('exposure-value').textContent=Number(e.target.value).toFixed(2);};
  $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.querySelector('.explorer').requestFullscreen();}catch{$('hint').textContent='当前浏览器不支持全屏，请使用浏览器全屏快捷键。'}};
