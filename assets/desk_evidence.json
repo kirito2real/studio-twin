@@ -1,0 +1,114 @@
+[
+  {
+    "workstation_index": 0,
+    "bay": "A1",
+    "contents": "empty laptop stand, dark mug, two drinks",
+    "source": "video 8\u201313s; photo 1552359 foreground",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 12,
+    "bay": "A2",
+    "contents": "Photo-textured soft backpack, external display, silver laptop, two crumpled plastic bags, adapter, extension strip and wire loops",
+    "source": "HD photo 1552359 crop (2110,875)-(2650,1335); video frame 54 at 17.7s; user correction",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 2,
+    "bay": "A3",
+    "contents": "orange drink, paper shopping bag, blue and green tissues, cups",
+    "source": "video 22\u201329s; photo 2e958 center foreground",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 4,
+    "bay": "A4",
+    "contents": "yellow drink, clear bottles, red cap bottle, fruit sleeves, ceramic mug",
+    "source": "video 30\u201336s; photo 2e958 front right",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 1,
+    "bay": "B1",
+    "contents": "monitor, grey mat, exposed control board, white strip",
+    "source": "video 75\u201378s right side; photo 1552359",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 13,
+    "bay": "B2",
+    "contents": "large monitor, grouped purple-label water bottles, keyboard",
+    "source": "video 75\u201380s; photo 212e7 rear center",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 3,
+    "bay": "B3",
+    "contents": "monitor, red insulated flask, black keyboard and mouse",
+    "source": "video 79\u201383s; photo 212e7 rear left",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 5,
+    "bay": "B4",
+    "contents": "yellow desk mat, display, green tissues, ceramic cup",
+    "source": "video 83\u201386s; photo 212e7 rear left end",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 6,
+    "bay": "C1",
+    "contents": "open black laptop, rear-facing monitor, black mug, book stack",
+    "source": "video 64\u201370s and 88\u201391s; photo 1552359 left",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 8,
+    "bay": "C2",
+    "contents": "six-wheel electronics platform, closed laptop, loose wires and cloth",
+    "source": "video 88\u201395s; photo 2787 middle",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 14,
+    "bay": "C3",
+    "contents": "monitor, black bag, small white container, documents",
+    "source": "video 70\u201374s; photo 212e7 center",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 10,
+    "bay": "C4",
+    "contents": "display, white bottle, stacked notebooks, cables near glass",
+    "source": "video 70\u201374s; photo 2787 glass end",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 7,
+    "bay": "D1",
+    "contents": "two grey modules, angled handheld controller, vertical power unit",
+    "source": "video 102\u2013108s; photo 2787 foreground",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 9,
+    "bay": "D2",
+    "contents": "white desk fan, tall paper bag, controller, wired adapters",
+    "source": "video 106\u2013112s; photo 2787 center",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 15,
+    "bay": "D3",
+    "contents": "papers, pens, tissue cups, white USB strip, blue takeaway cup",
+    "source": "video 109\u2013115s; photo 212e7 front middle",
+    "dimension_status": "estimated"
+  },
+  {
+    "workstation_index": 11,
+    "bay": "D4",
+    "contents": "two open cartons, exposed electronics chassis, printed papers",
+    "source": "video 115\u2013121s; photo 212e7 foreground",
+    "dimension_status": "estimated"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "door_wall": "awards wall, perpendicular to plain lounge wall",
+  "opening_width_estimate_m": 1.65,
+  "plain_wall_closed": true,
+  "west_extension_estimate_m": 1.0,
+  "room_estimate_m": [
+    8.2,
+    6.4,
+    2.7
+  ],
+  "frame_clear_width_estimate_m": 1.585
+}

@@ -1,0 +1,189 @@
+{
+  "asset_sha256": "b7ec18ec91940c8ad2208813ca61e83dd160746613d2d0e80aaad40864ff4e09",
+  "simulator": "Isaac Sim 4.1",
+  "physics_dt": 0.004166666666666667,
+  "steps": 1440,
+  "duration_seconds": 6,
+  "mesh_count": 3020,
+  "static_colliders": 2106,
+  "texture_paths_ok": true,
+  "tests": [
+    {
+      "name": "floor_entry",
+      "start": [
+        -2.0,
+        -2.65,
+        1.0
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -2.0,
+        -2.6500000953674316,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "floor_aisle",
+      "start": [
+        -1.95,
+        0,
+        1.0
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -1.9500000476837158,
+        0.0,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "floor_rear_aisle",
+      "start": [
+        -2,
+        2.4,
+        1
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -2.0,
+        2.4000000953674316,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "desk_A2",
+      "start": [
+        -0.20250000059604645,
+        -1.7619999647140503,
+        1.2
+      ],
+      "expected_rest_z": 0.8325,
+      "final": [
+        -0.20250000059604645,
+        -1.7619999647140503,
+        0.8324999809265137
+      ],
+      "minimum_z": 0.8324999213218689,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "desk_A3",
+      "start": [
+        0.92249995470047,
+        -1.9619998931884766,
+        1.2
+      ],
+      "expected_rest_z": 0.8325,
+      "final": [
+        0.92249995470047,
+        -1.9619998931884766,
+        0.8363999724388123
+      ],
+      "minimum_z": 0.8346799612045288,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "door_threshold",
+      "start": [
+        -3.9,
+        3.25,
+        1.0
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -3.9000000953674316,
+        3.25,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "lounge_walkway",
+      "start": [
+        -3.0,
+        0,
+        1.0
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -3.0,
+        0.0,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "recess_floor",
+      "start": [
+        -3.95,
+        -3.95,
+        1.0
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -3.950000047683716,
+        -3.950000047683716,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "widened_door_right",
+      "start": [
+        -3.02,
+        3.25,
+        1.0
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -3.0199999809265137,
+        3.25,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    },
+    {
+      "name": "robot_side_floor",
+      "start": [
+        -2.25,
+        1.47,
+        1.0
+      ],
+      "expected_rest_z": 0.08,
+      "final": [
+        -2.25,
+        1.4700000286102295,
+        0.07999999821186066
+      ],
+      "minimum_z": 0.07009401172399521,
+      "stable_last_second": true,
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "Static environment only; furniture joints and movable clutter not simulated",
+    "No full robot navigation or grasp test",
+    "Dimensions estimated, friction and mass not calibrated"
+  ],
+  "source_modified": false
+}

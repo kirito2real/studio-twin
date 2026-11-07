@@ -1,0 +1,408 @@
+{
+  "assets": [
+    {
+      "id": "Coat_rack",
+      "type": "coat_rack",
+      "source": "依据照片和视频估算建模"
+    },
+    {
+      "id": "Desk_00_A1",
+      "type": "desk_contents",
+      "source": "video 8–13s; photo 1552359 foreground"
+    },
+    {
+      "id": "Desk_01_B1",
+      "type": "desk_contents",
+      "source": "video 75–78s right side; photo 1552359"
+    },
+    {
+      "id": "Desk_02_A3",
+      "type": "desk_contents",
+      "source": "video 22–29s; photo 2e958 center foreground"
+    },
+    {
+      "id": "Desk_03_B3",
+      "type": "desk_contents",
+      "source": "video 79–83s; photo 212e7 rear left"
+    },
+    {
+      "id": "Desk_04_A4",
+      "type": "desk_contents",
+      "source": "video 30–36s; photo 2e958 front right"
+    },
+    {
+      "id": "Desk_05_B4",
+      "type": "desk_contents",
+      "source": "video 83–86s; photo 212e7 rear left end"
+    },
+    {
+      "id": "Desk_06_C1",
+      "type": "desk_contents",
+      "source": "video 64–70s and 88–91s; photo 1552359 left"
+    },
+    {
+      "id": "Desk_07_D1",
+      "type": "desk_contents",
+      "source": "video 102–108s; photo 2787 foreground"
+    },
+    {
+      "id": "Desk_08_C2",
+      "type": "desk_contents",
+      "source": "video 88–95s; photo 2787 middle"
+    },
+    {
+      "id": "Desk_09_D2",
+      "type": "desk_contents",
+      "source": "video 106–112s; photo 2787 center"
+    },
+    {
+      "id": "Desk_10_C4",
+      "type": "desk_contents",
+      "source": "video 70–74s; photo 2787 glass end"
+    },
+    {
+      "id": "Desk_11_D4",
+      "type": "desk_contents",
+      "source": "video 115–121s; photo 212e7 foreground"
+    },
+    {
+      "id": "Desk_12_A2",
+      "type": "desk_contents",
+      "source": "HD photo 1552359: crop (2110,875)-(2650,1335); video 17.7s frame 54"
+    },
+    {
+      "id": "Desk_13_B2",
+      "type": "desk_contents",
+      "source": "video 75–80s; photo 212e7 rear center"
+    },
+    {
+      "id": "Desk_14_C3",
+      "type": "desk_contents",
+      "source": "video 70–74s; photo 212e7 center"
+    },
+    {
+      "id": "Desk_15_D3",
+      "type": "desk_contents",
+      "source": "video 109–115s; photo 212e7 front middle"
+    },
+    {
+      "id": "Divider_0_0",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Divider_0_1",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Divider_0_2",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Divider_0_3",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Divider_1_0",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Divider_1_1",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Divider_1_2",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Divider_1_3",
+      "type": "desk_divider",
+      "source": "User correction: four separate divider panels in each desk row"
+    },
+    {
+      "id": "Lounge_black_loveseat",
+      "type": "loveseat",
+      "source": "Photo 212e7 plain-wall lounge: small black sofa between round table and dispenser; user confirmed 2026-11-07"
+    },
+    {
+      "id": "North_open_glass_door",
+      "type": "door",
+      "source": "Wide adjacent-room opening, inferred 1.65 m; original leaf retained because the photo does not establish a double-leaf door"
+    },
+    {
+      "id": "Research_robot",
+      "type": "quadruped_static_geometry",
+      "source": "Video frame 174 (57.7 s), registered SfM body patch; HD photo 1552359: floor beside instrument desk, crouched pose"
+    },
+    {
+      "id": "Side_table",
+      "type": "side_table",
+      "source": "Photo 212e7: round table left of black loveseat; user confirmed"
+    },
+    {
+      "id": "Visitor_chair",
+      "type": "visitor_chair",
+      "source": "依据照片和视频估算建模"
+    },
+    {
+      "id": "Water_dispenser",
+      "type": "water_dispenser",
+      "source": "依据照片和视频估算建模"
+    },
+    {
+      "id": "Water_storage_rack",
+      "type": "water_storage_rack",
+      "source": "依据照片和视频估算建模"
+    },
+    {
+      "id": "Workstation_00",
+      "type": "workstation",
+      "source": "video 8–13s; photo 1552359 foreground"
+    },
+    {
+      "id": "Workstation_01",
+      "type": "workstation",
+      "source": "video 75–78s right side; photo 1552359"
+    },
+    {
+      "id": "Workstation_02",
+      "type": "workstation",
+      "source": "video 22–29s; photo 2e958 center foreground"
+    },
+    {
+      "id": "Workstation_03",
+      "type": "workstation",
+      "source": "video 79–83s; photo 212e7 rear left"
+    },
+    {
+      "id": "Workstation_04",
+      "type": "workstation",
+      "source": "video 30–36s; photo 2e958 front right"
+    },
+    {
+      "id": "Workstation_05",
+      "type": "workstation",
+      "source": "video 83–86s; photo 212e7 rear left end"
+    },
+    {
+      "id": "Workstation_06",
+      "type": "workstation",
+      "source": "video 64–70s and 88–91s; photo 1552359 left"
+    },
+    {
+      "id": "Workstation_07",
+      "type": "workstation",
+      "source": "video 102–108s; photo 2787 foreground"
+    },
+    {
+      "id": "Workstation_08",
+      "type": "workstation",
+      "source": "video 88–95s; photo 2787 middle"
+    },
+    {
+      "id": "Workstation_09",
+      "type": "workstation",
+      "source": "video 106–112s; photo 2787 center"
+    },
+    {
+      "id": "Workstation_10",
+      "type": "workstation",
+      "source": "video 70–74s; photo 2787 glass end"
+    },
+    {
+      "id": "Workstation_11",
+      "type": "workstation",
+      "source": "video 115–121s; photo 212e7 foreground"
+    },
+    {
+      "id": "Workstation_12",
+      "type": "workstation",
+      "source": "video 14–20s; photo 1552359 middle"
+    },
+    {
+      "id": "Workstation_13",
+      "type": "workstation",
+      "source": "video 75–80s; photo 212e7 rear center"
+    },
+    {
+      "id": "Workstation_14",
+      "type": "workstation",
+      "source": "video 70–74s; photo 212e7 center"
+    },
+    {
+      "id": "Workstation_15",
+      "type": "workstation",
+      "source": "video 109–115s; photo 212e7 front middle"
+    }
+  ],
+  "cameras": {
+    "Interior": {
+      "position": [
+        -3.3499999046325684,
+        1.649999976158142,
+        2.799999952316284
+      ],
+      "target": [
+        -1.211616039276123,
+        1.3040857315063477,
+        0.7245101928710938
+      ],
+      "fov": 57.22092063977898
+    },
+    "Reverse": {
+      "position": [
+        2.950000047683716,
+        1.600000023841858,
+        -2.5
+      ],
+      "target": [
+        0.37555384635925293,
+        1.2879462242126465,
+        -0.9917387962341309
+      ],
+      "fov": 53.1301017798049
+    },
+    "Corner_awards": {
+      "position": [
+        -3.75,
+        1.8200000524520874,
+        -2.700000047683716
+      ],
+      "target": [
+        -1.5165576934814453,
+        1.3504047393798828,
+        -0.7528953552246094
+      ],
+      "fov": 59.48976604808465
+    },
+    "Corner_glass_front": {
+      "position": [
+        3.2200000286102295,
+        1.8200000524520874,
+        2.700000047683716
+      ],
+      "target": [
+        0.9931042194366455,
+        1.3880829811096191,
+        0.7367421388626099
+      ],
+      "fov": 59.48976604808465
+    },
+    "Instrument_close": {
+      "position": [
+        -2.450000047683716,
+        1.649999976158142,
+        -0.25
+      ],
+      "target": [
+        -0.07114458084106445,
+        0.22268640995025635,
+        -1.391850471496582
+      ],
+      "fov": 35.938276582261864
+    },
+    "Desk_detail": {
+      "position": [
+        -1.7999999523162842,
+        1.649999976158142,
+        2.5999999046325684
+      ],
+      "target": [
+        0.3578915596008301,
+        0.5310934782028198,
+        0.8417181968688965
+      ],
+      "fov": 35.051134046820174
+    },
+    "Backpack_detail": {
+      "position": [
+        -0.25,
+        1.649999976158142,
+        3.0999999046325684
+      ],
+      "target": [
+        0.7137117981910706,
+        0.3716069459915161,
+        0.5628812313079834
+      ],
+      "fov": 33.39849122996013
+    },
+    "Lounge_detail": {
+      "position": [
+        -1.9500000476837158,
+        1.649999976158142,
+        -0.550000011920929
+      ],
+      "target": [
+        -4.646200180053711,
+        0.4559687376022339,
+        0.0020795464515686035
+      ],
+      "fov": 53.1301017798049
+    },
+    "Door_layout": {
+      "position": [
+        -1.600000023841858,
+        2.1500000953674316,
+        -0.6000000238418579
+      ],
+      "target": [
+        -3.4876089096069336,
+        1.2882673740386963,
+        -2.7666449546813965
+      ],
+      "fov": 47.92497853787827
+    },
+    "Recess_detail": {
+      "position": [
+        -1.600000023841858,
+        1.649999976158142,
+        0.6499999761581421
+      ],
+      "target": [
+        -3.445699691772461,
+        1.3323686122894287,
+        2.9936089515686035
+      ],
+      "fov": 46.397181333762305
+    },
+    "Robot_door_detail": {
+      "position": [
+        -3.549999952316284,
+        1.4800000190734863,
+        0.4000000059604645
+      ],
+      "target": [
+        -1.972427248954773,
+        0.645996630191803,
+        -2.0115766525268555
+      ],
+      "fov": 51.28200968475036
+    },
+    "Video_57s_aligned": {
+      "position": [
+        -2.216275691986084,
+        1.4406468868255615,
+        0.35560476779937744
+      ],
+      "target": [
+        -2.3681046962738037,
+        -0.25532102584838867,
+        -2.11434268951416
+      ],
+      "fov": 56.79336104301994
+    }
+  },
+  "units": "estimated metres",
+  "dimensions": [
+    8.2,
+    6.4,
+    2.7
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "estimated_clear_gaps_m": [
+    0.6540098786354065,
+    0.6786136627197266,
+    0.6676574647426605,
+    0.6647920906543732
+  ],
+  "chair_scale_unchanged": true,
+  "desk_row_shift_m": [
+    -0.15,
+    0.15
+  ],
+  "chair_push_in_m": 0.25,
+  "dimensions_are_estimates": true
+}

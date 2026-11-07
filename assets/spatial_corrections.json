@@ -1,0 +1,28 @@
+{
+  "robot_before": [
+    -1.899999976158142,
+    -1.5,
+    0.0
+  ],
+  "robot_after": [
+    -1.7857890129089355,
+    1.4721382856369019,
+    0.0
+  ],
+  "robot_rotation_degrees": 90,
+  "robot_z_scale": 0.65,
+  "packing_case_before": [
+    -2.98,
+    2.55
+  ],
+  "packing_case_after": [
+    -1.67,
+    2.85
+  ],
+  "door_opening_before_m": 1.15,
+  "door_opening_after_m": 1.65,
+  "door_frame_clear_width_m": 1.585,
+  "registration": "spatial_registration.json",
+  "dimensions_estimated": true,
+  "artwork_kept_off_door_opening": 16
+}

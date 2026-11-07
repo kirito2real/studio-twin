@@ -1,0 +1,9 @@
+{
+  "physical_tests_passed": 10,
+  "usd_sha256": "b7ec18ec91940c8ad2208813ca61e83dd160746613d2d0e80aaad40864ff4e09",
+  "web_assets": 48,
+  "meshes": 3020,
+  "colliders": 2106,
+  "glb_bytes": 13815304,
+  "camera_presets": 12
+}

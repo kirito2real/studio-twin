@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f4ef"><title>Studio Twin · 工作室数字孪生</title><link rel="stylesheet" href="style.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script></head>
+<body>
+<header><a class="brand" href="./" aria-label="工作室数字孪生首页"><span class="mark">◈</span><span>STUDIO<span class="thin"> / TWIN</span><small>工作室数字孪生</small></span></a><div class="pipeline">照片 / 视频 <span>→</span> 逐物建模 <span>→</span> 交互场景</div><span class="version"><i></i> SCENE 01 <b>·</b> 2026.11</span></header>
+<main>
+ <section class="explorer" aria-label="三维场景浏览器">
+  <div class="toolbar"><div class="segmented" role="group" aria-label="浏览模式"><button data-mode="orbit" class="active">◈ 全景</button><button data-mode="walk">↗ 室内</button><button data-mode="top">⊞ 俯视</button></div><div class="tools"><button id="compare" aria-pressed="false">◧ 照片对照</button><button id="reset" aria-label="重置视角">↺</button><button id="fullscreen" aria-label="全屏查看">⤢</button></div></div>
+  <div id="viewport" tabindex="0" aria-label="拖动旋转，滚轮缩放，点击物体查看信息">
+   <img id="fallback" src="assets/preview.jpg" alt="工作室 Blender 模型预览">
+   <div id="loading" role="status"><span class="loader"></span><strong>正在打开工作室</strong><small id="load-detail">加载三维模型 · 约 14 MB</small></div>
+   <div id="photo-pane" hidden><img id="reference" src="assets/corner-3.jpg" alt="工作室角落原始照片"><span>原始照片 · 视角近似匹配</span></div>
+   <div class="scene-caption"><span class="eyebrow">RECONSTRUCTED SPACE</span><h1>走进你的工作室。</h1><p>从房间布局，到桌上的每一处细节。</p></div>
+   <div class="north" aria-hidden="true">Z<br>↑<span>＋</span></div>
+   <div class="canvas-footer"><span id="hint">拖动旋转 · 滚轮缩放 · 点击选择物体</span><span id="render-status">模型准备中</span></div>
+  </div>
+  <div id="comparison-tools" hidden><label>照片宽度 <input id="split" type="range" min="20" max="75" value="45"></label><span>照片用于人工对照，未做像素级配准。</span></div>
+  <nav class="viewpoints" aria-label="预设视角"><span class="eyebrow">VIEWS <small>预设视角</small></span><button data-view="Interior" data-photo="3"><img src="assets/corner-3.jpg" alt=""><span>01 <b>入口全貌</b></span></button><button data-view="Corner_awards" data-photo="2"><img src="assets/corner-2.jpg" alt=""><span>02 <b>仪器桌面</b></span></button><button data-view="Reverse" data-photo="1"><img src="assets/corner-1.jpg" alt=""><span>03 <b>纸箱一侧</b></span></button><button data-view="Corner_glass_front" data-photo="4"><img src="assets/corner-4.jpg" alt=""><span>04 <b>玻璃隔断</b></span></button></nav>
+ </section>
+ <aside>
+  <div class="panel-heading"><span class="eyebrow">SCENE EXPLORER</span><h2>场景工作台 <span>01</span></h2><p>每排四块隔板 · 16 组独立桌面 · 四角照片与两段视频对照</p></div>
+  <div class="metrics"><div><strong>16</strong><span>工位</span></div><div><strong>4</strong><span>参考视角</span></div><div><strong>10/10</strong><span>支撑测试</span></div></div>
+  <section class="panel"><h3>场景图层 <span>LAYERS</span></h3><label class="check"><span>房间结构</span><input type="checkbox" id="room" checked></label><label class="check"><span>家具与桌面物体</span><input type="checkbox" id="assets" checked></label><label class="check"><span>吊顶与照明构件</span><input type="checkbox" id="ceiling"></label><label class="check"><span>物体分色</span><input type="checkbox" id="colors"></label><label class="range-label" for="cut">剖切高度 <output id="cut-value">2.20 m</output></label><input id="cut" type="range" min="0.4" max="3.5" step="0.05" value="2.2"><label class="range-label" for="exposure">画面亮度 <output id="exposure-value">1.00</output></label><input id="exposure" type="range" min="0.4" max="2" step="0.05" value="1"></section>
+  <section class="panel selection"><h3>查看物体 <span>INSPECT</span></h3><label class="sr-only" for="asset-select">选择物体</label><select id="asset-select"><option value="">点击场景中的物体，或从此选择</option></select><div class="detail-views"><button data-detail="Backpack_detail">背包桌面</button><button data-detail="Lounge_detail">休息区</button><button data-detail="Door_layout">门口布局</button><button data-detail="Recess_detail">凹入通道</button><button data-detail="Robot_door_detail">机器狗与门口</button><button data-detail="Video_57s_aligned">视频恢复视角</button></div><strong id="selected-name">尚未选择</strong><p id="selected-info">桌面物品按工位分组，可查看其对应的照片与视频依据。</p><button id="focus" disabled>定位所选物体 ↗</button></section>
+  <details class="panel physics"><summary><span><i></i> Isaac Sim 验证</span><b>10 / 10</b></summary><p>Isaac Sim 4.1 · 240 Hz · 6 秒。八处地面（含加宽门口、机器狗旁、休息区与凹入通道）、两处桌面的支撑测试通过。</p><p>仅验证静态碰撞与支撑，不代表已验证抓取、关节或机器人导航。</p><a href="assets/physics.json" download>下载验证记录 ↗</a></details>
+  <div class="note"><span>≈ 估算尺寸</span><p>主空间约 8.2 × 6.4 × 2.7 m，另含凹入通道。缺少实测标尺；遮挡处与细小物体仍含近似建模。</p></div>
+  <a class="download" href="assets/studio.glb" download>下载三维模型 <span>GLB ↓</span></a>
+  <a class="download" href="downloads/studio_blender_isaac.zip" download>Blender / Isaac Sim <span>完整包 ↓</span></a>
+  <footer>BLENDER → GLTF · <a href="https://frank-zy-dou.github.io/kitchen-twin/" target="_blank" rel="noreferrer">交互参考 ↗</a></footer>
+ </aside>
+</main><script type="module" src="app.js"></script>
+</body></html>
