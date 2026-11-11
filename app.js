@@ -14,7 +14,7 @@ const names={workstation:'工位',desk_contents:'桌面物品',desk_divider:'桌
 let controls;
 function fail(error){console.error(error);$('load-detail').textContent='三维加载失败，请刷新重试。下方 GLB 可下载至 Blender 查看。';$('loading').querySelector('strong').textContent='暂时无法打开三维视图';$('loading').querySelector('.loader').hidden=true;$('fallback').style.opacity='1';}
 function resize(){if(!renderer)return;const {width,height}=viewport.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();}
-function activeMode(value){mode=value;viewport.dataset.mode=value;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===value));controls.enablePan=value!=='walk';controls.minDistance=value==='walk'?.15:.3;controls.maxPolarAngle=value==='top'?Math.PI/2:Math.PI*.94;$('hint').textContent=value==='walk'?'拖动调整朝向 · W A S D 移动 · 仅视角漫游，无碰撞':'拖动旋转 · 滚轮缩放 · 点击选择物体';}
+function activeMode(value){mode=value;viewport.dataset.mode=value;document.querySelectorAll('button[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===value));controls.enablePan=value!=='walk';controls.minDistance=value==='walk'?.15:.3;controls.maxPolarAngle=value==='top'?Math.PI/2:Math.PI*.94;$('hint').textContent=value==='walk'?'拖动调整朝向 · W A S D 移动 · 仅视角漫游，无碰撞':'拖动旋转 · 滚轮缩放 · 点击选择物体';}
 function setCamera(position,target,fov=42){camera.position.fromArray(position);controls.target.fromArray(target);camera.fov=fov;camera.updateProjectionMatrix();controls.update();}
 function cut(value){$('cut').value=value;clipping.constant=Number(value);$('cut-value').textContent=value>=3.5?'完整高度':Number(value).toFixed(2)+' m';}
 function overview(){activeMode('orbit');cut(.7);setCamera([9,9,11].map(v=>v*Math.max(1,1.25/camera.aspect)),[-.4,.5,-.3],42);document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));}
@@ -41,7 +41,7 @@ try{
  renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
  renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;const rect=viewport.getBoundingClientRect(),ray=new THREE.Raycaster();ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);const hit=ray.intersectObjects(meshes,false).find(h=>h.object.visible&&(h.object.userData.layer!=='room'||clipping.distanceToPoint(h.point)>=0));if(hit)select(assetOf(hit.object));});
  $('asset-select').onchange=e=>{const object=assets.get(e.target.value);if(object)select(object);};$('focus').onclick=focus;
- document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{if(b.dataset.mode==='orbit')overview();else if(b.dataset.mode==='walk')view('Interior');else{activeMode('top');cut(1.3);setCamera([.3,12,.001],[.3,0,0],42);}});
+ document.querySelectorAll('button[data-mode]').forEach(b=>b.onclick=()=>{if(b.dataset.mode==='orbit')overview();else if(b.dataset.mode==='walk')view('Interior');else{activeMode('top');cut(1.3);setCamera([.3,12,.001],[.3,0,0],42);}});
  document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>view(b.dataset.view));
  document.querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>view(b.dataset.detail));
  $('reset').onclick=overview;
