@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from './vendor/controls/OrbitControls.js';
 import {GLTFLoader} from './vendor/loaders/GLTFLoader.js';
 import {RoomEnvironment} from './vendor/environments/RoomEnvironment.js';
+import {jointControls} from './joints.js';
 
 const $=id=>document.getElementById(id);
 const viewport=$('viewport');
@@ -10,8 +11,8 @@ const meshes=[],assets=new Map(),keys=new Set();
 const scene=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(42,1,.03,120);
 const clipping=new THREE.Plane(new THREE.Vector3(0,-1,0),2.2);
-const names={workstation:'工位',desk_contents:'桌面物品',desk_divider:'桌面隔板',coat_rack:'衣帽架',side_table:'边桌',water_dispenser:'饮水机',water_rack:'水桶架',water_storage_rack:'水桶架',loveseat:'小沙发',door:'玻璃门',quadruped_static_geometry:'研究机器人',quadruped:'研究机器人',visitor_chair:'会客椅'};
-let controls;
+const names={workstation:'工位',desk_contents:'桌面物品',desk_divider:'桌面隔板',coat_rack:'衣帽架',side_table:'边桌',water_dispenser:'饮水机',water_rack:'水桶架',water_storage_rack:'水桶架',loveseat:'小沙发',door:'玻璃门',quadruped_static_geometry:'研究机器人',quadruped:'研究机器人',quadruped_articulated_12dof:'宇树机器狗（Go1 暂定）',visitor_chair:'会客椅'};
+let controls,motionTick=()=>{};
 function fail(error){console.error(error);$('load-detail').textContent='三维加载失败，请刷新重试。下方 GLB 可下载至 Blender 查看。';$('loading').querySelector('strong').textContent='暂时无法打开三维视图';$('loading').querySelector('.loader').hidden=true;$('fallback').style.opacity='1';}
 function resize(){if(!renderer)return;const {width,height}=viewport.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();}
 function activeMode(value){mode=value;viewport.dataset.mode=value;document.querySelectorAll('button[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===value));controls.enablePan=value!=='walk';controls.minDistance=value==='walk'?.15:.3;controls.maxPolarAngle=value==='top'?Math.PI/2:Math.PI*.94;$('hint').textContent=value==='walk'?'拖动调整朝向 · W A S D 移动 · 仅视角漫游，无碰撞':'拖动旋转 · 滚轮缩放 · 点击选择物体';}
@@ -20,7 +21,7 @@ function cut(value){$('cut').value=value;clipping.constant=Number(value);$('cut-
 function overview(){activeMode('orbit');cut(.7);setCamera([9,9,11].map(v=>v*Math.max(1,1.25/camera.aspect)),[-.4,.5,-.3],42);document.querySelectorAll('[data-view]').forEach(b=>b.classList.remove('active'));}
 function view(name){const v=meta.cameras[name];activeMode('walk');cut(3.5);setCamera(v.position,v.target,v.fov);document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name));}
 function assetOf(object){let target=object;while(target&&target!==model){if(assets.has(target.name))return target;target=target.parent;}return object;}
-function label(object){if(object.userData.bay_id)return `${object.userData.bay_id} · ${object.userData.semantic_type==='workstation'?'工位':'桌面物品'}`;const kind=names[object.userData.semantic_type]||object.userData.semantic_type||'场景构件';const station=object.name.match(/Workstation_(\d+)/);const desk=object.name.match(/Desk_(\d+)/);return station?`工位 ${String(Number(station[1])+1).padStart(2,'0')}`:desk?`桌面 ${String(Number(desk[1])+1).padStart(2,'0')} · 物品组`:object.name.startsWith('Divider_')?`第 ${Number(object.name.split('_')[1])+1} 排 · 隔板 ${Number(object.name.split('_')[2])+1}`:kind;}
+function label(object){if(object.userData.motion_label)return object.userData.motion_label;if(object.userData.bay_id)return `${object.userData.bay_id} · ${object.userData.semantic_type==='workstation'?'工位':'桌面物品'}`;const kind=names[object.userData.semantic_type]||object.userData.semantic_type||'场景构件';const station=object.name.match(/Workstation_(\d+)/);const desk=object.name.match(/Desk_(\d+)/);return station?`工位 ${String(Number(station[1])+1).padStart(2,'0')}`:desk?`桌面 ${String(Number(desk[1])+1).padStart(2,'0')} · 物品组`:object.name.startsWith('Divider_')?`第 ${Number(object.name.split('_')[1])+1} 排 · 隔板 ${Number(object.name.split('_')[2])+1}`:kind;}
 function select(object){selected=object;if(outline){scene.remove(outline);outline.geometry.dispose();outline.material.dispose();outline=null;}if(!object)return;outline=new THREE.BoxHelper(object,0xb45430);outline.material.depthTest=false;outline.renderOrder=5;scene.add(outline);$('selected-name').textContent=label(object);$('selected-info').textContent=object.userData.source_evidence||meta.assets.find(a=>a.id===object.name)?.source||'依据照片和视频估算；形状、尺寸和位置仍需实测确认。';$('focus').disabled=false;$('asset-select').value=assets.has(object.name)?object.name:'';}
 function focus(){if(!selected)return;const box=new THREE.Box3().setFromObject(selected),c=box.getCenter(new THREE.Vector3()),s=box.getSize(new THREE.Vector3()).length();activeMode('orbit');cut(3.5);setCamera(c.clone().add(new THREE.Vector3(1,.8,1).normalize().multiplyScalar(Math.max(s*1.5,1.1))).toArray(),c.toArray(),45);}
 function layers(){meshes.forEach(o=>{const layer=o.userData.layer||'assets';o.visible=$(layer)?.checked??true;});if(outline)outline.visible=false;}
@@ -36,6 +37,7 @@ try{
  model=gltf.scene;scene.add(model);model.updateMatrixWorld(true);
  model.traverse(o=>{if(o.isMesh){meshes.push(o);const room=o.userData.layer==='room';o.material=o.material.clone();o.material.clippingPlanes=room?[clipping]:[];o.receiveShadow=true;o.castShadow=!room&&o.userData.layer!=='ceiling'&&!o.material.transparent;if(o.material?.isMeshPhysicalMaterial)o.material.envMapIntensity=.5;}if(meta.assets.some(a=>a.id===o.name))assets.set(o.name,o);});
  for(const object of assets.values()){const option=document.createElement('option');option.value=object.name;option.textContent=label(object);$('asset-select').append(option);}
+ motionTick=await jointControls(model,object=>{select(object);focus();},()=>{sun.shadow.needsUpdate=true;if(outline)outline.update();});
  layers();sun.shadow.needsUpdate=true;$('fallback').hidden=true;$('loading').hidden=true;$('render-status').textContent=`${meshes.length.toLocaleString()} 网格 · 估算尺度`;viewport.dataset.ready='true';
  let down;
  renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];});
@@ -49,5 +51,5 @@ try{
  $('cut').oninput=e=>cut(Number(e.target.value));$('exposure').oninput=e=>{renderer.toneMappingExposure=Number(e.target.value);$('exposure-value').textContent=Number(e.target.value).toFixed(2);};
  $('fullscreen').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.querySelector('.explorer').requestFullscreen();}catch{$('hint').textContent='当前浏览器不支持全屏，请使用浏览器全屏快捷键。'}};
  viewport.addEventListener('keydown',e=>{if(mode==='walk'&&['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(e.key.toLowerCase())){keys.add(e.key.toLowerCase());e.preventDefault();}});window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>keys.clear());viewport.addEventListener('blur',()=>keys.clear());
- let previous=performance.now();renderer.setAnimationLoop(now=>{const dt=Math.min((now-previous)/1000,.05);previous=now;if(mode==='walk'&&keys.size){const forward=new THREE.Vector3();camera.getWorldDirection(forward);forward.y=0;forward.normalize();const right=new THREE.Vector3().crossVectors(forward,new THREE.Vector3(0,1,0));const movement=new THREE.Vector3();if(keys.has('w')||keys.has('arrowup'))movement.add(forward);if(keys.has('s')||keys.has('arrowdown'))movement.sub(forward);if(keys.has('d')||keys.has('arrowright'))movement.add(right);if(keys.has('a')||keys.has('arrowleft'))movement.sub(right);movement.normalize().multiplyScalar(dt*1.4);camera.position.add(movement);controls.target.add(movement);}controls.update();renderer.render(scene,camera);});
+ let previous=performance.now();renderer.setAnimationLoop(now=>{const dt=Math.min((now-previous)/1000,.05);previous=now;motionTick(dt);if(mode==='walk'&&keys.size){const forward=new THREE.Vector3();camera.getWorldDirection(forward);forward.y=0;forward.normalize();const right=new THREE.Vector3().crossVectors(forward,new THREE.Vector3(0,1,0));const movement=new THREE.Vector3();if(keys.has('w')||keys.has('arrowup'))movement.add(forward);if(keys.has('s')||keys.has('arrowdown'))movement.sub(forward);if(keys.has('d')||keys.has('arrowright'))movement.add(right);if(keys.has('a')||keys.has('arrowleft'))movement.sub(right);movement.normalize().multiplyScalar(dt*1.4);camera.position.add(movement);controls.target.add(movement);}controls.update();renderer.render(scene,camera);});
 }catch(error){fail(error);}

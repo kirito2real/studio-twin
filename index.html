@@ -8,7 +8,7 @@
   <div class="toolbar"><div class="segmented" role="group" aria-label="浏览模式"><button data-mode="orbit" class="active">◈ 全景</button><button data-mode="walk">↗ 室内</button><button data-mode="top">⊞ 俯视</button></div><div class="tools"><button id="reset" aria-label="重置视角">↺</button><button id="fullscreen" aria-label="全屏查看">⤢</button></div></div>
   <div id="viewport" tabindex="0" aria-label="拖动旋转，滚轮缩放，点击物体查看信息">
    <img id="fallback" src="assets/preview.jpg" alt="工作室 Blender 模型预览">
-   <div id="loading" role="status"><span class="loader"></span><strong>正在打开工作室</strong><small id="load-detail">加载三维模型 · 约 14 MB</small></div>
+   <div id="loading" role="status"><span class="loader"></span><strong>正在打开工作室</strong><small id="load-detail">加载三维模型 · 约 28 MB</small></div>
    <div class="scene-caption"><span class="eyebrow">RECONSTRUCTED SPACE</span><h1>走进你的工作室。</h1><p>从房间布局，到桌上的每一处细节。</p></div>
    <div class="north" aria-hidden="true">Z<br>↑<span>＋</span></div>
    <div class="canvas-footer"><span id="hint">拖动旋转 · 滚轮缩放 · 点击选择物体</span><span id="render-status">模型准备中</span></div>
@@ -17,13 +17,14 @@
  </section>
  <aside>
   <div class="panel-heading"><span class="eyebrow">SCENE EXPLORER</span><h2>场景工作台 <span>01</span></h2><p>每排四块隔板 · 16 组独立桌面 · 多视角三维浏览</p></div>
-  <div class="metrics"><div><strong>16</strong><span>工位</span></div><div><strong>4</strong><span>参考视角</span></div><div><strong>10/10</strong><span>支撑测试</span></div></div>
+  <div class="metrics"><div><strong>16</strong><span>工位</span></div><div><strong>4</strong><span>参考视角</span></div><div><strong>31</strong><span>可动关节</span></div></div>
   <section class="panel"><h3>场景图层 <span>LAYERS</span></h3><label class="check"><span>房间结构</span><input type="checkbox" id="room" checked></label><label class="check"><span>家具与桌面物体</span><input type="checkbox" id="assets" checked></label><label class="check"><span>吊顶与照明构件</span><input type="checkbox" id="ceiling"></label><label class="check"><span>物体分色</span><input type="checkbox" id="colors"></label><label class="range-label" for="cut">剖切高度 <output id="cut-value">2.20 m</output></label><input id="cut" type="range" min="0.4" max="3.5" step="0.05" value="2.2"><label class="range-label" for="exposure">画面亮度 <output id="exposure-value">1.00</output></label><input id="exposure" type="range" min="0.4" max="2" step="0.05" value="1"></section>
   <section class="panel selection"><h3>查看物体 <span>INSPECT</span></h3><label class="sr-only" for="asset-select">选择物体</label><select id="asset-select"><option value="">点击场景中的物体，或从此选择</option></select><div class="detail-views"><button data-detail="Backpack_detail">背包桌面</button><button data-detail="Lounge_detail">休息区</button><button data-detail="Door_layout">门口布局</button><button data-detail="Recess_detail">凹入通道</button><button data-detail="Robot_door_detail">机器狗与门口</button><button data-detail="Video_57s_aligned">视频恢复视角</button></div><strong id="selected-name">尚未选择</strong><p id="selected-info">桌面物品按工位分组，可查看其对应的照片与视频依据。</p><button id="focus" disabled>定位所选物体 ↗</button></section>
-  <details class="panel physics"><summary><span><i></i> Isaac Sim 验证</span><b>10 / 10</b></summary><p>Isaac Sim 4.1 · 240 Hz · 6 秒。八处地面（含加宽门口、机器狗旁、休息区与凹入通道）、两处桌面的支撑测试通过。</p><p>仅验证静态碰撞与支撑，不代表已验证抓取、关节或机器人导航。</p><a href="assets/physics.json" download>下载验证记录 ↗</a></details>
+  <section class="panel selection"><h3>关节运动 <span><b id="joint-count">—</b> JOINTS</span></h3><label for="joint-select" class="sr-only">选择关节</label><select id="joint-select"></select><label class="range-label" for="joint-position">关节位置 <output id="joint-value">0</output></label><input id="joint-position" type="range" min="0" max="1" value="0"><p id="joint-info"></p><div class="detail-views"><button id="joint-focus">查看关节</button><button id="joint-play" aria-pressed="false">播放动作</button><button id="joint-reset">全部复位</button></div><p>网页展示关节动作；接触与动力学在 Isaac Sim 中计算。抽屉内部结构为估算；机器狗暂按 Go1 官方模型（型号待确认），固定机身用于关节测试。</p><a href="assets/joints.json" download>下载关节属性 ↗</a></section>
+  <details class="panel physics"><summary><span><i></i> Isaac Sim 关节验证</span><b>31 / 31</b></summary><p>Isaac Sim 4.1 · CPU PhysX · 240 Hz · 9 秒。两扇门、15 把转椅、两个抽屉及机器狗 12 个关节的目标运动与返回测试通过。</p><p>仅验证记录中的动作目标，未遍历全部行程与碰撞组合。机器狗机身固定，未验证行走、平衡或导航；细线缆不参与碰撞。</p><a href="assets/motion_report.json" download>下载关节验证记录 ↗</a></details>
   <div class="note"><span>≈ 估算尺寸</span><p>主空间约 8.2 × 6.4 × 2.7 m，另含凹入通道。缺少实测标尺；遮挡处与细小物体仍含近似建模。</p></div>
   <a class="download" href="assets/studio.glb" download>下载三维模型 <span>GLB ↓</span></a>
-  <a class="download" href="downloads/studio_blender_isaac.zip" download>Blender / Isaac Sim <span>完整包 ↓</span></a>
+  <a class="download" href="downloads/studio_articulated.zip" download>Blender / Isaac Sim <span>完整包 ↓</span></a>
   <footer>BLENDER → GLTF · <a href="https://frank-zy-dou.github.io/kitchen-twin/" target="_blank" rel="noreferrer">交互参考 ↗</a></footer>
  </aside>
 </main><script type="module" src="app.js"></script>
